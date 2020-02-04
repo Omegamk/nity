@@ -1,0 +1,25 @@
+getClassNames: function(b) {
+            var c = [],
+d = this.viewDate.getUTCFullYear(),
+                f = this.viewDate.getUTCMonth();
+				var zzD =b.getUTCDate();
+				var zzY = b.getUTCFullYear();
+                var zzM = b.getUTCMonth();
+                <?php
+$host='localhost';
+$username='root';
+$password='';
+$conn=mysqli_connect($host,$username,$password,"student");
+if(!$conn){
+die('Could not Connect My Sql:' .mysql_error());
+}
+
+$result = mysqli_query($conn,"SELECT * FROM book_date");
+$i=0;
+while($row = mysqli_fetch_array($result)) {
+	?>
+	if(zzM==<?php echo $row["mm"]-1;?> && zzD==<?php echo $row["dd"];?> && zzY==<?php echo $row["yyyy"];?>) {c.push("busy");}
+	<?php
+$i++;
+}
+?>	
